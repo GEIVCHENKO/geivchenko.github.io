@@ -1,0 +1,588 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Георгий Ивченко - моя страница</title>
+    <!-- Шрифты Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&family=Montserrat:wght@500;700;900&display=swap" rel="stylesheet">
+    <!-- Иконки FontAwesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        :root {
+            --bg-color: #0f172a;
+            --card-bg: rgba(30, 41, 59, 0.7);
+            --primary: #38bdf8; /* Светло-голубой */
+            --accent: #818cf8; /* Индиго */
+            --text-main: #f1f5f9;
+            --text-sec: #94a3b8;
+            --gradient: linear-gradient(135deg, #38bdf8 0%, #818cf8 100%);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+
+        /* --- Background Animation --- */
+        .bg-glow {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            background: 
+                radial-gradient(circle at 15% 50%, rgba(56, 189, 248, 0.08) 0%, transparent 25%),
+                radial-gradient(circle at 85% 30%, rgba(129, 140, 248, 0.08) 0%, transparent 25%);
+        }
+
+        /* --- Typography --- */
+        h1, h2, h3 {
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        .highlight {
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        /* --- Layout --- */
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        section {
+            padding: 80px 0;
+        }
+
+        /* --- Header / Hero --- */
+        header {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+
+        .hero-content {
+            text-align: center;
+            z-index: 1;
+        }
+
+        .profile-img-container {
+            width: 200px;
+            height: 200px;
+            margin: 0 auto 30px;
+            border-radius: 50%;
+            padding: 5px;
+            background: var(--gradient);
+            box-shadow: 0 0 30px rgba(56, 189, 248, 0.3);
+            animation: float 6s ease-in-out infinite;
+        }
+
+        .profile-img {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 4px solid var(--bg-color);
+        }
+
+        .hero-title {
+            font-size: 3.5rem;
+            font-weight: 900;
+            margin-bottom: 10px;
+            letter-spacing: -1px;
+        }
+
+        .hero-subtitle {
+            font-size: 1.5rem;
+            color: var(--text-sec);
+            margin-bottom: 30px;
+            font-weight: 300;
+        }
+
+        .typing-text::after {
+            content: '|';
+            animation: blink 1s infinite;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 15px 40px;
+            background: var(--gradient);
+            color: #fff;
+            text-decoration: none;
+            border-radius: 30px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: transform 0.3s, box-shadow 0.3s;
+            border: none;
+            cursor: pointer;
+        }
+
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(56, 189, 248, 0.4);
+        }
+
+        /* --- Cards & Glassmorphism --- */
+        .glass-card {
+            background: var(--card-bg);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: 20px;
+            padding: 30px;
+            margin-bottom: 30px;
+            transition: transform 0.3s, border-color 0.3s;
+        }
+
+        .glass-card:hover {
+            transform: translateY(-5px);
+            border-color: rgba(56, 189, 248, 0.3);
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            margin-bottom: 50px;
+            text-align: center;
+        }
+
+        /* --- Experience Timeline --- */
+        .timeline {
+            position: relative;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 2px;
+            height: 100%;
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        .timeline-item {
+            position: relative;
+            padding-left: 40px;
+            margin-bottom: 50px;
+        }
+
+        .timeline-dot {
+            position: absolute;
+            left: -6px;
+            top: 0;
+            width: 14px;
+            height: 14px;
+            border-radius: 50%;
+            background: var(--primary);
+            box-shadow: 0 0 10px var(--primary);
+        }
+
+        .timeline-date {
+            font-size: 0.9rem;
+            color: var(--primary);
+            font-weight: 600;
+            margin-bottom: 5px;
+            display: block;
+        }
+
+        .timeline-role {
+            font-size: 1.4rem;
+            font-weight: 700;
+            margin-bottom: 5px;
+        }
+
+        .timeline-company {
+            font-size: 1.1rem;
+            color: var(--text-sec);
+            margin-bottom: 15px;
+            font-style: italic;
+        }
+
+        .timeline-desc ul {
+            list-style: none;
+        }
+
+        .timeline-desc li {
+            position: relative;
+            padding-left: 20px;
+            margin-bottom: 8px;
+            color: var(--text-sec);
+        }
+
+        .timeline-desc li::before {
+            content: '▹';
+            position: absolute;
+            left: 0;
+            color: var(--accent);
+        }
+
+        /* --- Education --- */
+        .edu-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+        }
+
+        .edu-icon {
+            font-size: 2rem;
+            color: var(--primary);
+            margin-bottom: 15px;
+        }
+
+        /* --- Skills Section --- */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+
+        .skill-card {
+            background: var(--card-bg);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: 15px;
+            padding: 25px;
+            text-align: center;
+            transition: transform 0.3s, border-color 0.3s;
+        }
+
+        .skill-card:hover {
+            transform: translateY(-5px);
+            border-color: rgba(56, 189, 248, 0.3);
+        }
+
+        .skill-icon {
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .skill-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+
+        .skill-level {
+            font-size: 0.9rem;
+            color: var(--primary);
+            font-weight: 500;
+        }
+
+        .language-badge {
+            display: inline-block;
+            background: rgba(56, 189, 248, 0.1);
+            color: var(--primary);
+            padding: 8px 20px;
+            border-radius: 25px;
+            font-weight: 600;
+            margin: 10px;
+            border: 1px solid rgba(56, 189, 248, 0.3);
+        }
+
+        .languages-container {
+            text-align: center;
+            margin-top: 30px;
+        }
+
+        /* --- Availability (Special Section) --- */
+        .availability-section {
+            background: linear-gradient(rgba(15, 23, 42, 0.9), rgba(15, 23, 42, 0.9)), url('https://images.unsplash.com/photo-1614064641938-3bbee52942c7?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80');
+            background-size: cover;
+            background-attachment: fixed;
+            border-radius: 20px;
+            margin: 40px 0;
+            text-align: center;
+            border: 1px solid rgba(56, 189, 248, 0.2);
+        }
+
+        .availability-badge {
+            display: inline-block;
+            background: rgba(56, 189, 248, 0.1);
+            color: var(--primary);
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            margin-bottom: 15px;
+            border: 1px solid rgba(56, 189, 248, 0.3);
+        }
+
+        /* --- Footer --- */
+        footer {
+            text-align: center;
+            padding: 50px 0 80px; /* Увеличенный отступ снизу */
+            border-top: 1px solid rgba(255,255,255,0.05);
+        }
+
+        .social-links a {
+            color: var(--text-main);
+            font-size: 1.5rem;
+            margin: 0 15px;
+            transition: color 0.3s;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.05);
+        }
+
+        .social-links a:hover {
+            color: var(--primary);
+            background: rgba(56, 189, 248, 0.1);
+        }
+
+        /* --- Animations --- */
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-15px); }
+            100% { transform: translateY(0px); }
+        }
+
+        @keyframes blink {
+            50% { opacity: 0; }
+        }
+
+        .hidden {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease-out;
+        }
+
+        .show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* --- Mobile --- */
+        @media (max-width: 768px) {
+            .hero-title { font-size: 2.5rem; }
+            .timeline::before { left: 0; }
+            .timeline-item { padding-left: 30px; }
+            .skills-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="bg-glow"></div>
+
+    <!-- Hero Section -->
+    <header class="container">
+        <div class="hero-content hidden">
+            <div class="profile-img-container">
+                <!-- Убедись, что фото лежит в папке img/ava.png -->
+                <img src="img/ava.png" alt="Фото профиля" class="profile-img" onerror="this.src='https://via.placeholder.com/200x200?text=Photo'">
+            </div>
+            <h1 class="hero-title">Привет, я <span class="highlight">Специалист</span></h1>
+            <h2 class="hero-subtitle">Оператор ЭВМ и <span class="typing-text"></span></h2>
+            <a href="#contact" class="btn">Связаться со мной</a>
+        </div>
+    </header>
+
+    <!-- Skills Section -->
+    <section id="skills" class="container">
+        <h2 class="section-title hidden">Навыки</h2>
+        <div class="skills-grid">
+            
+            <div class="skill-card hidden">
+                <i class="fas fa-headset skill-icon"></i>
+                <div class="skill-title">CRM-системы</div>
+                <div class="skill-level">Продвинутый уровень</div>
+            </div>
+
+            <div class="skill-card hidden">
+                <i class="fas fa-file-contract skill-icon"></i>
+                <div class="skill-title">Электронный документооборот</div>
+                <div class="skill-level">Продвинутый уровень</div>
+            </div>
+
+            <div class="skill-card hidden">
+                <i class="fas fa-database skill-icon"></i>
+                <div class="skill-title">Работа с базами данных</div>
+                <div class="skill-level">Продвинутый уровень</div>
+            </div>
+
+            <div class="skill-card hidden">
+                <i class="fas fa-envelope skill-icon"></i>
+                <div class="skill-title">Электронная почта</div>
+                <div class="skill-level">Продвинутый уровень</div>
+            </div>
+
+        </div>
+
+        <div class="languages-container hidden">
+            <h3 style="margin-bottom: 20px; color: var(--text-sec);">Языки</h3>
+            <div>
+                <span class="language-badge"><i class="fas fa-globe"></i> Английский — B2 (Upper-Intermediate)</span>
+                <span class="language-badge"><i class="fas fa-globe"></i> Испанский — B1 (Intermediate)</span>
+            </div>
+        </div>
+    </section>
+</br>
+    <!-- Experience Section -->
+    <section id="experience" class="container">
+        <h2 class="section-title hidden">Опыт работы</h2>
+        
+        <div class="timeline">
+            
+            <!-- Job 2 -->
+            <div class="timeline-item hidden">
+                <div class="timeline-dot"></div>
+                <span class="timeline-date">Февраль 2026 — Настоящее время</span>
+                <h3 class="timeline-role">Оператор верификации цифровых транзакций</h3>
+                <div class="timeline-company">Международная финансово-технологическая компания (NDA)</div>
+                <div class="timeline-desc">
+                    <ul>
+                        <li>Работа в команде комплаенс-поддержки: обработка заявок на доступ к платным сервисам.</li>
+                        <li>Взаимодействие с внутренними реестрами: пользовательские соглашения, платежные поручения, логи авторизации.</li>
+                        <li>Проверка корректности данных и соответствия регламенту (KYC/AML процедуры).</li>
+                        <li>Активация услуг при отсутствии нарушений политик безопасности.</li>
+                        <li>Деловая переписка с партнерами и клиентами для уточнения деталей верификации.</li>
+                        <li>KPI-ориентированная работа: выполнение плановых показателей по конверсии и скорости обработки.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Job 1 -->
+            <div class="timeline-item hidden">
+                <div class="timeline-dot"></div>
+                <span class="timeline-date">Ноябрь 2022 — Февраль 2026 (3 года 4 мес)</span>
+                <h3 class="timeline-role">Оператор по обработке документов</h3>
+                <div class="timeline-company">Т-Банк</div>
+                <div class="timeline-desc">
+                    <ul>
+                        <li>Обработка входящей корреспонденции банка и работа в команде "Арест счетов".</li>
+                        <li>Работа с юридически значимыми документами: судебные приказы, исполнительные листы, постановления ФССП, инкассовые поручения, постановления МВД и судов по УД.</li>
+                        <li>Юридическая проверка документов на корректность и наличие стоп-факторов.</li>
+                        <li>Исполнение требований при отсутствии ограничений.</li>
+                        <li>Взаимодействие с внешними инстанциями: исходящие звонки в судебные участки и следователям.</li>
+                    </ul>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Education Section -->
+    <section id="education" class="container">
+        <h2 class="section-title hidden">Образование</h2>
+        <div class="edu-grid">
+            <div class="glass-card hidden">
+                <i class="fas fa-graduation-cap edu-icon"></i>
+                <h3>Астраханский государственный политехнический колледж</h3>
+                <p style="color: var(--primary); margin: 10px 0;">ГБПОУ АО</p>
+                <p><strong>Специальность:</strong> Оператор электронно-вычислительных и вычислительных машин (специалист по информационным системам)</p>
+                <p><strong>Уровень:</strong> Среднее специальное</p>
+                <p><strong>Год окончания:</strong> 2021</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Availability Section (Highlighted) -->
+    <section class="container">
+        <div class="glass-card availability-section hidden">
+            <div class="availability-badge"><i class="fas fa-moon"></i> Открыт к предложениям</div>
+            <h2 style="margin-bottom: 20px;">Ищу подработку (Ночная смена)</h2>
+            <p style="font-size: 1.2rem; max-width: 700px; margin: 0 auto 30px;">
+                С февраля 2026 года рассматриваю предложения о дополнительной занятости. 
+                Готов работать в ночное время (<strong>4–6 часов в день</strong>).
+                Высокая концентрация, внимательность к деталям и опыт работы с базами данных.
+            </p>
+            <a href="#contact" class="btn">Обсудить сотрудничество</a>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <footer id="contact" class="container">
+        <h2 class="section-title hidden">Контакты</h2>
+        <div class="glass-card hidden" style="max-width: 600px; margin: 0 auto; text-align: center;">
+            <p style="margin-bottom: 20px; font-size: 1.1rem;">Готов приступить к обсуждению задач в любое удобное время.</p>
+            <div class="social-links">
+                <a href="mailto:gora.200500@gmail.com" title="Email"><i class="fas fa-envelope"></i></a>
+                <a href="https://t.me/Department_A" target="_blank" title="Telegram"><i class="fab fa-telegram"></i></a>
+                <a href="https://astrakhan.hh.ru/resume/2a2652f4ff0d22bc930039ed1f327746694765" target="_blank" title="HeadHunter"><i class="fas fa-briefcase"></i></a>
+            </div>
+        </div>
+    </footer>
+</br>
+    <script>
+        // --- Typing Effect ---
+        const textElement = document.querySelector('.typing-text');
+        const phrases = ["Специалист по ИС", "Верификатор транзакций", "Эксперт по комплаенсу"];
+        let phraseIndex = 0;
+        let charIndex = 0;
+        let isDeleting = false;
+        let typeSpeed = 100;
+
+        function type() {
+            const currentPhrase = phrases[phraseIndex];
+            
+            if (isDeleting) {
+                textElement.textContent = currentPhrase.substring(0, charIndex - 1);
+                charIndex--;
+                typeSpeed = 50; 
+            } else {
+                textElement.textContent = currentPhrase.substring(0, charIndex + 1);
+                charIndex++;
+                typeSpeed = 100;
+            }
+
+            if (!isDeleting && charIndex === currentPhrase.length) {
+                isDeleting = true;
+                typeSpeed = 2000; // Pause at end
+            } else if (isDeleting && charIndex === 0) {
+                isDeleting = false;
+                phraseIndex = (phraseIndex + 1) % phrases.length;
+                typeSpeed = 500;
+            }
+
+            setTimeout(type, typeSpeed);
+        }
+
+        document.addEventListener('DOMContentLoaded', type);
+
+        // --- Scroll Animation (Intersection Observer) ---
+        const observerOptions = {
+            threshold: 0.1
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('show');
+                }
+            });
+        }, observerOptions);
+
+        const hiddenElements = document.querySelectorAll('.hidden');
+        hiddenElements.forEach((el) => observer.observe(el));
+    </script>
+</body>
+</html>
